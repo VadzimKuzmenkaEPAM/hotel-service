@@ -1,93 +1,55 @@
 package com.example.demo.model;
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "booking")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     @Column
+    @NotBlank
     private String name;
     @Column
+    @Min (value = 1)
+    @Max(value = 365)
     private int duration;
     @Column
     private Double cost;
     @Column
+    @NotBlank
     private String currency;
     @Column
     private LocalDateTime date;
-    @Column (name = "number_of_room")
-    private String numberOfRoom;
+    @Column (name = "room_number")
+    private int roomNumber;
+    @Column(name = "start_booking")
+    private LocalDate startBooking;
+    @Column(name = "finish_booking")
+    private LocalDate finishBooking;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    User user;
 
-    public Booking(Long id, String name, int duration, Double cost, String currency, LocalDateTime date, String numberOfRoom) {
-        this.id = id;
-        this.name = name;
-        this.duration = duration;
-        this.cost = cost;
-        this.currency = currency;
-        this.date = date;
-        this.numberOfRoom = numberOfRoom;
-    }
 
-    public Booking() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public Double getCost() {
-        return cost;
-    }
-
-    public void setCost(Double cost) {
-        this.cost = cost;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public String getNumberOfRoom() {
-        return numberOfRoom;
-    }
-
-    public void setNumberOfRoom(String numberOfRoom) {
-        this.numberOfRoom = numberOfRoom;
+    @PrePersist
+    public void prePersist() {
+        this.date = LocalDateTime.now();
+        this.finishBooking = startBooking.plusDays(this.duration);
     }
 }

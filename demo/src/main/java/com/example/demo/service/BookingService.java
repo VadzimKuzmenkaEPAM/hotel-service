@@ -1,15 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Booking;
-import org.springframework.stereotype.Service;
 
-@Service
+import java.util.Optional;
+
 public interface BookingService {
-    Booking create(Booking booking);
+    Booking save(Booking booking);
 
-    Booking update(Booking booking);
+    Optional<Booking> findById(Long id);
 
-    void delete(Long id);
+    Double calculateBookingCost(int numberOfDays, double cost);
 
-    Booking readById(Long id);
+    public Double recalculationToCorrectCurrency(String currency, Double price);
+
+    public void calculateFinalPrice(Booking booking);
 }
