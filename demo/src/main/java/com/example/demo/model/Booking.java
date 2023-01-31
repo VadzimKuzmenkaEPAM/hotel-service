@@ -1,4 +1,5 @@
 package com.example.demo.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -26,26 +26,24 @@ public class Booking {
     @NotBlank
     private String name;
     @Column
-    @Min (value = 1)
+    @Min(value = 1)
     @Max(value = 365)
     private int duration;
     @Column
     private Double cost;
     @Column
-    @NotBlank
     private String currency;
     @Column
     private LocalDateTime date;
-    @Column (name = "room_number")
+    @Column(name = "room_number")
     private int roomNumber;
     @Column(name = "start_booking")
     private LocalDate startBooking;
     @Column(name = "finish_booking")
     private LocalDate finishBooking;
-    @ManyToOne
-    @JoinColumn(name = "id")
-    User user;
-
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    Customer customer;
 
     @PrePersist
     public void prePersist() {

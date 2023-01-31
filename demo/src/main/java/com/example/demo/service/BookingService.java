@@ -1,9 +1,10 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Booking;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public interface BookingService {
     Booking save(Booking booking);
 

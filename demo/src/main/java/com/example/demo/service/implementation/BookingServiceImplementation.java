@@ -1,5 +1,7 @@
 package com.example.demo.service.implementation;
 
+import com.example.demo.exceptions.AppException;
+import com.example.demo.exceptions.ErrorCode;
 import com.example.demo.model.Booking;
 import com.example.demo.repository.BookingRepository;
 import com.example.demo.service.BookingService;
@@ -34,7 +36,8 @@ public class BookingServiceImplementation implements BookingService {
 
     @Override
     public Optional<Booking> findById(Long id) {
-        return bookingRepository.findById(id);
+        return Optional.of(bookingRepository.findById(id).
+                orElseThrow(() -> new AppException(ErrorCode.BOOKING_NOT_FOUND)));
     }
 
     @Override

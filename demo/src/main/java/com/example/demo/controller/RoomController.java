@@ -20,7 +20,7 @@ public class RoomController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Room> findById(@PathVariable int id) {
+    ResponseEntity<Room> findById(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body(roomService.readByRoomNumber(id));
     }
 
@@ -34,9 +34,9 @@ public class RoomController {
         return ResponseEntity.status(HttpStatus.OK).body(roomService.save(room));
     }
 
-    @PatchMapping ("/{id}")
+ /*   @PatchMapping ("/{id}")
     public ResponseEntity<Room> update(@RequestBody Room room,
                                        @PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body(roomService.updateEntityField(room, id));
-    }
+    }*/
 }

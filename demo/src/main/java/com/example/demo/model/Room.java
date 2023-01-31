@@ -13,7 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import java.math.BigDecimal;
+
 
 @Entity
 @Table(name = "rooms_1", schema = "public")

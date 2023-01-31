@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.model.Room;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoomService {
     Room save(Room room);
@@ -15,7 +16,7 @@ public interface RoomService {
 
     void takeRoom(int number);
 
-    public Room updateEntityField(Room room, int roomNumber);
+    public Optional <Room> updateEntityField(Room room, int roomNumber);
 
-    void detach(Room room);
+    void detach(Optional <Room> room);
 }
