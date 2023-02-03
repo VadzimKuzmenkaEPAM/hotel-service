@@ -10,10 +10,10 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Service
-public class UsersDetails implements UserDetails {
+public class CustomerDetails implements UserDetails {
     private final Customer customer;
 
-    public UsersDetails(Customer customer) {
+    public CustomerDetails(Customer customer) {
         this.customer = customer;
     }
 

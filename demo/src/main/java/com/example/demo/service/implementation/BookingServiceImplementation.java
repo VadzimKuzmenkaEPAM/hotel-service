@@ -9,6 +9,7 @@ import com.example.demo.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,6 +39,11 @@ public class BookingServiceImplementation implements BookingService {
     public Optional<Booking> findById(Long id) {
         return Optional.of(bookingRepository.findById(id).
                 orElseThrow(() -> new AppException(ErrorCode.BOOKING_NOT_FOUND)));
+    }
+
+    @Override
+    public List<Booking> findAll() {
+        return (List<Booking>) bookingRepository.findAll();
     }
 
     @Override

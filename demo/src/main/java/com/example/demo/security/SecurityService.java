@@ -1,9 +1,9 @@
 package com.example.demo.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface SecurityService {
-    public UserDetails loadUserByLogin(String login);
+public interface SecurityService extends UserDetailsService {
 }

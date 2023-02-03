@@ -17,8 +17,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
             "password, " +
             "role, " +
             "email, " +
-            "card_number as cardNumber, " +
-            "FROM public.customer WHERE public.customer.login = :login";
+            "card_number " +
+            "FROM customer WHERE customer.login = :login";
 
     @Query(value = FIND_BY_LOGIN, nativeQuery = true)
     Optional<Customer> readByName(String login);

@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Room;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public interface RoomService {
     Room save(Room room);
 
